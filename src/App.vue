@@ -1,30 +1,22 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="min-h-screen w-full flex flex-col">
+    <!-- Navbar fija -->
+    <nav-bar class="w-full h-30 shrink-0" />
+
+    <!-- Contenedor de vistas -->
+    <div class="flex-1 overflow-hidden h-[calc(100vh-10rem)]">
+      <RouterView />
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script>
+import NavBar from './components/NavBar.vue';
+
+export default {
+  name: 'App',
+  components: {
+    NavBar
+  }
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+</script>
