@@ -1,19 +1,19 @@
 <template>
-    <div class="relative w-full h-full flex flex-col items-center ">
+    <div class="relative w-full h-[calc(100vh-5rem)] flex flex-col items-center mt-20 ">
         <!-- Botón volver -->
         <button @click="$router.push('/mapa')"
-            class="absolute top-6 left-6 bg-gray-700 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-md hover:bg-gray-800">
+            class="absolute top-2  left-2 bg-gray-700 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-md hover:bg-gray-800">
             ✕
         </button>
 
         <!-- Tabs -->
-        <div class="mt-6 flex w-4/5 max-w-3xl bg-white rounded-full shadow-md overflow-hidden">
-            <button class="flex-1 py-3 text-lg font-semibold transition-colors"
+        <div class="mt-3 flex w-4/5 max-w-3xl bg-white rounded-full shadow-md ">
+            <button class="flex-1 py-3 text-lg font-semibold transition-colors rounded-l-full"
                 :class="tab === 'detalles' ? 'bg-violet-600 text-white' : 'text-gray-600 bg-gray-200'"
                 @click="tab = 'detalles'">
                 Detalles
             </button>
-            <button class="flex-1 py-3 text-lg font-semibold transition-colors"
+            <button class="flex-1 py-3 text-lg font-semibold transition-colors rounded-r-full"
                 :class="tab === 'informes' ? 'bg-violet-600 text-white' : 'text-gray-600 bg-gray-200'"
                 @click="tab = 'informes'">
                 Informes
@@ -23,58 +23,58 @@
         <!-- Contenido -->
         <div v-if="tab === 'detalles'" class="flex flex-col items-center w-full">
             <!-- Imagen -->
-            <div class="mt-8 w-4/5 max-w-4xl">
+            <div class="mt-8 w-2/5">
                 <img v-if="getUrlImagen(instrumento.imagen)" :src="getUrlImagen(instrumento.imagen)"
-                    alt="Imagen del instrumento" class="rounded-xl shadow-lg w-full object-cover h-180" />
+                    alt="Imagen del instrumento" class="rounded-xl shadow-lg w-full object-cover h-80" />
                 <p v-else class="text-gray-500 text-center">No hay imagen disponible</p>
             </div>
 
             <!-- Datos -->
-            <div class="grid grid-cols-2 gap-4 mt-10 w-full px-8">
-                <div class="bg-gray-200 rounded-lg p-4 text-center">
+            <div class="grid grid-cols-2 gap-3 mt-5 w-full px-8">
+                <div class="bg-gray-200 rounded-lg p-2 text-center">
                     <span class="block font-bold text-gray-700">TAG:</span>
-                    <span class="block text-lg">{{ instrumento.tag }}</span>
+                    <span class="block text-md">{{ instrumento.tag }}</span>
                 </div>
-                <div class="bg-gray-200 rounded-lg p-4 text-center">
+                <div class="bg-gray-200 rounded-lg p-2 text-center">
                     <span class="block font-bold text-gray-700">Ubicación:</span>
-                    <span class="block text-lg">{{ instrumento.ubicacion || 'No disponible' }}</span>
+                    <span class="block text-md">{{ instrumento.ubicacion || 'No disponible' }}</span>
                 </div>
                 <div v-for="[key, value] in caracteristicasArray" :key="key"
-                    class="bg-gray-200 rounded-lg p-4 text-center">
+                    class="bg-gray-200 rounded-lg p-2 text-center">
                     <span class="block font-bold text-gray-700">{{ traducirEtiqueta(key) }}:</span>
-                    <span class="block text-lg">{{ renderizarValor(value, key) }}</span>
+                    <span class="block text-md">{{ renderizarValor(value, key) }}</span>
                 </div>
-                <div class="bg-gray-200 rounded-lg p-4 text-center">
+                <div class="bg-gray-200 rounded-lg p-2 text-center">
                     <span class="block font-bold text-gray-700">Último registro:</span>
-                    <span class="block text-lg">
+                    <span class="block text-md">
                         {{ instrumento.ultimo_registro ? formatFecha(instrumento.ultimo_registro) : 'No disponible' }}
                     </span>
                 </div>
             </div>
 
             <!-- Botones -->
-            <div class="w-full max-w-5xl mt-50 space-y-4">
+            <div class="w-full max-w-5xl mt-10 flex flex-col items-center space-y-4">
 
                 <button @click="crearNuevoRegistro"
-                    class="w-full h-50 bg-green-600 text-white text-3xl font-semibold rounded-lg shadow-lg flex items-center justify-center gap-2 hover:bg-green-600">
+                    class="w-4/5 h-30 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-lg flex items-center justify-center gap-2 hover:bg-green-600">
                     Registrar nuevo informe
-                    <i class="fa fa-plus text-5xl ml-6"></i>
+                    <i class="fa fa-plus text-3xl ml-6"></i>
                 </button>
             </div>
         </div>
 
         <!-- INFORMES -->
-        <div v-if="tab === 'informes'" class="w-full max-w-6xl mt-8 space-y-4 overflow-y-auto"
+        <div v-if="tab === 'informes'" class="w-full max-w-3xl mt-8 space-y-3 overflow-y-auto"
             style="max-height: calc(100vh - 12rem);">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Historial de informes</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Historial de informes</h2>
             <div v-if="informes.length">
-                <div v-for="(grupo, mes) in informesPorMes" :key="mes" class="mb-4">
-                    <h4 class="font-bold text-violet-700 border-b-5 border-violet-400 mb-3 text-2xl">{{ mes }}</h4>
+                <div v-for="(grupo, mes) in informesPorMes" :key="mes" class="mb-2">
+                    <h4 class="font-bold text-violet-700 border-b-5 border-violet-400 mb-3 text-xl">{{ mes }}</h4>
                     <div v-for="informe in grupo" :key="informe.id" @click="abrirInforme(informe.id)"
-                        class="grid grid-cols-[1fr_1fr_1fr] gap-4 bg-gray-100 hover:bg-gray-200 rounded px-4 py-8 mb-3 cursor-pointer items-center no-underline shadow-md text-inherit">
-                        <span class="text-xl">{{ informe.folio || `Informe ${informe.id}` }}</span>
-                        <span class="text-xl capitalize">{{ informe.tipo_informe }}</span>
-                        <span class="text-xl text-gray-600">{{ formatFecha(informe.fecha) }}</span>
+                        class="grid grid-cols-[1fr_1fr_1fr] gap-4 bg-gray-100 hover:bg-gray-200 rounded px-4 py-5 mb-3 cursor-pointer items-center no-underline shadow-md text-inherit">
+                        <span class="text-lg">{{ informe.folio || `Informe ${informe.id}` }}</span>
+                        <span class="text-lg capitalize">{{ informe.tipo_informe }}</span>
+                        <span class="text-lg text-gray-600">{{ formatFecha(informe.fecha) }}</span>
                     </div>
                 </div>
             </div>
@@ -167,11 +167,10 @@ export default {
             if (Array.isArray(valor)) return valor.join(", ");
             return valor;
         },
-        descargarUltimoInforme() {
-            console.log("Descargar último informe...");
-        },
+    
         crearNuevoRegistro() {
-            console.log("Crear nuevo registro...");
+           this.$router.push({ name: 'registrarinforme', params: { tag: this.instrumento.tag } })
+
         },
         abrirInforme(id) {
             this.$router.push({ name: "detalleinforme", params: { id } });

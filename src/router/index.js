@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import DetalleInstrumentoView from '../views/DetalleInstrumentoView.vue'
 import DetalleInformeView from '../views/DetalleInformeView.vue'
 import MapaView from '../views/MapaView.vue'
+import RegistroInformeView from '../views/RegistroInformeView.vue'
+import { name } from 'dayjs/locale/es'
 
 const routes = [
   {
@@ -19,6 +21,12 @@ const routes = [
     path: '/detalleinstrumento/:tag',
     name: 'detalleinstrumento',
     component: DetalleInstrumentoView,
+  },
+  {
+    path: '/registrarinforme/:tag',
+    name: 'registrarinforme',
+    component: RegistroInformeView
+
   },
   {
     path: '/detalleinforme/:id',

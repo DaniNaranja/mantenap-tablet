@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-screen h-[calc(100vh-7.5rem)]">
+    <div class="relative w-screen h-[calc(100vh-5rem)] mt-20">
         <!-- Barra de búsqueda y botón volver -->
         <div class="absolute top-4 left-4 right-4 z-20 flex justify-between items-start gap-3">
             <!-- Botón cerrar -->
@@ -11,26 +11,26 @@
             <!-- Contenedor derecha: búsqueda + dropdown -->
             <div class="flex flex-col items-end gap-3">
                 <!-- Input búsqueda -->
-                <div class="relative w-[48rem]">
+                <div class="relative w-140">
                     <input v-model="searchQuery" placeholder="Buscar instrumento por tag..."
-                        class="w-full h-14 rounded-full shadow-md pl-8 pr-14 text-xl bg-white/80 focus:outline-none" />
+                        class="w-full h-12 rounded-full shadow-md pl-8 pr-14 text-lg bg-white/80 focus:outline-none" />
                     <i
-                        class="fa fa-search absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500 text-2xl"></i>
+                        class="fa fa-search absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl"></i>
                 </div>
 
                 <!-- Desplegable tipo instrumento -->
                 <select v-model="selectedTipo"
-                    class="w-[31rem] h-14 rounded-full px-6 text-xl bg-white/80 shadow focus:outline-none">
-                    <option disabled value="">Seleccionar tipo de instrumento...</option>
+                    class="w-90 h-12 rounded-full px-6 text-lg bg-white/80 shadow focus:outline-none">
+                    <option value="">Seleccionar tipo de instrumento...</option>
                     <option value="hidrante">Hidrantes</option>
                     <option value="rociadores">Rociadores</option>
-                    <option value="extintores">Extintores</option>
+                    
                 </select>
                 <!-- Control de radio debajo del select -->
-                <div class="mt-2 flex items-center bg-white/80 py-3 px-6 rounded-full">
+                <div class="mt-1 flex items-center bg-white/80 py-2 px-6 rounded-full">
                     <label for="radioSlider" class="text-lg font-semibold">Radio:</label>
                     <input id="radioSlider" type="range" min="100" max="1000" step="100" v-model="radioFiltro"
-                        class="w-[18rem] h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-blue-500 ml-2" />
+                        class="w-40 h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-blue-500 ml-2" />
                     <span class="text-lg font-medium w-18 text-right">{{ radioFiltro }} m</span>
                 </div>
 
@@ -47,7 +47,7 @@
 
         <!-- Instrucción -->
         <div class="absolute bottom-6 inset-x-0 flex justify-center z-20">
-            <div class="h-40 bg-gray-700/90 text-white mb-20 w-3/5 max-w-[90%] rounded-lg shadow md:text-2xl 
+            <div class="h-30 bg-slate-900/75 text-white mb-10 w-3/5 max-w-[90%] rounded-lg shadow md:text-xl 
         flex items-center justify-center text-center px-6">
                 Haga click en el instrumento a seleccionar
             </div>
@@ -196,14 +196,14 @@ export default {
 
             const iconoHidrante = L.icon({
                 iconUrl: hydrantIcon,
-                iconSize: [70, 70],
+                iconSize: [60, 60],
                 iconAnchor: [15, 30],
                 popupAnchor: [0, -30]
             });
 
             const iconoRociador = L.icon({
                 iconUrl: sprinklerIcon,
-                iconSize: [70, 70],
+                iconSize: [60, 60],
                 iconAnchor: [15, 30],
                 popupAnchor: [0, -30]
             });
