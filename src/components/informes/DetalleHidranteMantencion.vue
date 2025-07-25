@@ -29,7 +29,7 @@
             </div>
 
             <!-- 2.3 Tag Actual y Nuevo -->
-            <div class="grid grid-cols-4 gap-4 py-2 border-b border-dashed">
+            <div class="grid grid-cols-4 gap-12 py-2 border-b border-dashed">
                 <div>
                     <span class="font-semibold text-lg">2.3 Tag Actual: </span>
                     <span class="text-lg">{{ renderizarValor(datos.tag_actual) }}</span>
@@ -48,7 +48,7 @@
 
             <!-- 2.5 Válvula Corte Raiser -->
             <div class="mt-2">
-                <h4 class="font-semibold mb-1">2.5 Válvula Corte Raiser</h4>
+                <h4 class="font-semibold mb-1 text-lg">2.5 Válvula Corte Raiser</h4>
                 <div class="grid grid-cols-4 gap-4 border-b border-dashed pb-2">
                     <div>
                         <span class="font-semibold block text-lg">Diámetro</span>
