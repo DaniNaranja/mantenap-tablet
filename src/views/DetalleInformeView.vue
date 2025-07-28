@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-8 h-[calc(100vh-7.5rem)] mt-20 p-6">
+  <div class="flex gap-8 h-[calc(100vh-5rem)] mt-15 p-6">
     <div class="flex-1 overflow-y-auto pr-2 space-y-6">
       <button @click="volverAlInstrumento"
         class="text-violet-800 font-bold mb-4 flex items-center hover:cursor-pointer text-lg">

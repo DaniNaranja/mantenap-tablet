@@ -4,7 +4,7 @@ import router from '../router';
 
 // Crear la instancia de Axios
 const instance = axios.create({
-  baseURL: 'http://192.168.42.1:3002', // Ajusta según tu entorno
+  baseURL: 'https://192.168.42.1:3002', // Ajusta según tu entorno
   timeout: 20000,
 });
 

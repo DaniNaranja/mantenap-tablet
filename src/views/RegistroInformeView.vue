@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-[calc(100vh-6rem)] flex flex-col bg-gray-50 mt-20">
+  <div class="fixed top-20 left-0 w-screen h-[calc(100vh-5rem)] flex flex-col bg-gray-50 ">
     <!-- HEADER -->
     <div class="sticky top-0 z-50 bg-violet-800 text-white px-6 py-3 shadow flex justify-between items-center">
       <button @click="$router.back()" class="text-lg font-bold">←</button>
@@ -50,7 +50,7 @@
           </button>
           <button
             @click="confirmarRegistro"
-            class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition"
+            class="bg-green-600 text-white px-6 py-3 bottom-12 rounded hover:bg-green-700 transition"
           >
             Confirmar
           </button>

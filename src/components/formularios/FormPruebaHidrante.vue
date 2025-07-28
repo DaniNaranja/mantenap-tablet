@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-[calc(100vh-20rem)] ">
+  <div class="flex flex-col h-[calc(100vh-16rem)] ">
     <!-- Tabs -->
     <div class="flex bg-gray-100 rounded-full overflow-hidden mb-4 w-full max-w-xl mx-auto mt-2 sticky fixed">
       <button class="flex-1 py-2 font-semibold"
@@ -101,9 +101,9 @@
 
     </div>
 
-    <div class="mt-10">
+    <div class="mt-2">
           <button
-            class="w-full bg-green-600 text-white text-3xl font-semibold py-6 rounded-lg shadow-lg hover:bg-green-700"
+            class="w-full bg-green-600 text-white mb-20 text-3xl font-semibold py-6 rounded-lg shadow-lg hover:bg-green-700"
             @click="emitir">
             Registrar
           </button>

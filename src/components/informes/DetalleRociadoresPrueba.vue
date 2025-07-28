@@ -18,7 +18,7 @@
         <table class="w-full border text-sm">
           <colgroup>
             <col /> <!-- Columna de etiquetas -->
-            <col v-for="(equipo, index) in equipos" :key="'col_equipo_' + index" class="w-[12%]" />
+            <col v-for="(equipo, index) in equipos" :key="'col_equipo_' + index" class="w-[13.4%]" />
             <col /> <!-- Columna de observaciones -->
           </colgroup>
           <thead>

@@ -110,9 +110,9 @@
 
         </div>
 
-        <div class="mt-10">
+        <div class="mt-4">
             <button
-                class="w-full bg-green-600 text-white text-3xl font-semibold py-6 rounded-lg shadow-lg hover:bg-green-700"
+                class="w-full bg-green-600 mb-8 text-white text-3xl font-semibold py-6 rounded-lg shadow-lg hover:bg-green-700"
                 @click="emitir">
                 Registrar
             </button>

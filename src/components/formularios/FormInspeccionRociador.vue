@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-[calc(100vh-20rem)] ">
+  <div class="flex flex-col ">
 
     <!-- Título -->
     <h2 class="text-2xl font-bold my-3">{{ tituloInforme }}</h2>
@@ -128,18 +128,18 @@
     </div>
 
     <!-- Botones para navegar / emitir -->
-    <div class="mt-6 flex justify-between">
+    <div class="mt-2 flex justify-between mb-30">
       <button v-if="paginaActual === 'imagenes'" @click="paginaActual = 'formulario'"
-        class="px-8 py-2 text-lg border rounded mb-8 hover:bg-gray-100">
+        class="px-8 py-2 text-lg border rounded hover:bg-gray-100">
         Volver al formulario
       </button>
 
       <button v-if="paginaActual === 'formulario'" @click="paginaActual = 'imagenes'"
-        class="px-8 py-2 text-lg border rounded mb-8 hover:bg-gray-100">
+        class="px-8 py-2 text-lg border rounded hover:bg-gray-100">
         Ir a subir imágenes
       </button>
 
-      <button @click="emitir" class="bg-green-600 text-white px-24 py-6 mb-8 text-lg rounded font-bold hover:bg-green-700">
+      <button @click="emitir" class="bg-green-600 text-white px-24 py-6 text-lg rounded font-bold hover:bg-green-700">
         Registrar
       </button>
     </div>

@@ -17,7 +17,7 @@
       <table class="table-auto w-full text-md border mt-2">
         <colgroup>
           <col />
-          <col v-for="(equipo, index) in equipos" :key="'col_equipo_' + index" class="w-[12%]" />
+          <col v-for="(equipo, index) in equipos" :key="'col_equipo_' + index" class="w-[14.8%]" />
           <col />
         </colgroup>
         <thead>
@@ -26,7 +26,7 @@
             <th v-for="(equipo, index) in equipos" :key="'eq' + index" class="border px-2 py-1 text-center">
               {{ equipo.nro_equipo || `Equipo ${index + 1}` }}
             </th>
-            <th class="border px-2 py-1">Observaciones</th>
+            <th class="border px-1 py-1">Observaciones</th>
           </tr>
         </thead>
         <tbody>

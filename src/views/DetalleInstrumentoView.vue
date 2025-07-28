@@ -1,5 +1,6 @@
 <template>
-    <div class="relative w-full h-[calc(100vh-5rem)] flex flex-col items-center mt-20 ">
+    <div class="fixed top-20 left-0 w-screen h-[calc(100vh-5rem)] flex flex-col items-center">        <!-- Barra de búsqueda y botón volver -->
+
         <!-- Botón volver -->
         <button @click="$router.push('/mapa')"
             class="absolute top-2  left-2 bg-gray-700 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-md hover:bg-gray-800">

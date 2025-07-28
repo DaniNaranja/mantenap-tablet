@@ -1,6 +1,5 @@
 <template>
-    <div class="relative w-screen h-[calc(100vh-5rem)] mt-20">
-        <!-- Barra de búsqueda y botón volver -->
+<div class="fixed top-20 left-0 w-screen h-[calc(100vh-5rem)]">        <!-- Barra de búsqueda y botón volver -->
         <div class="absolute top-4 left-4 right-4 z-20 flex justify-between items-start gap-3">
             <!-- Botón cerrar -->
             <button @click="volverHome"
@@ -24,7 +23,7 @@
                     <option value="">Seleccionar tipo de instrumento...</option>
                     <option value="hidrante">Hidrantes</option>
                     <option value="rociadores">Rociadores</option>
-                    
+
                 </select>
                 <!-- Control de radio debajo del select -->
                 <div class="mt-1 flex items-center bg-white/80 py-2 px-6 rounded-full">
@@ -46,7 +45,7 @@
 
 
         <!-- Instrucción -->
-        <div class="absolute bottom-6 inset-x-0 flex justify-center z-20">
+        <div class="absolute bottom-20 inset-x-0 flex justify-center z-20">
             <div class="h-30 bg-slate-900/75 text-white mb-10 w-3/5 max-w-[90%] rounded-lg shadow md:text-xl 
         flex items-center justify-center text-center px-6">
                 Haga click en el instrumento a seleccionar
@@ -139,36 +138,55 @@ export default {
             }).addTo(this.map);
 
             // Intentar obtener ubicación real del usuario
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        this.userLat = position.coords.latitude;
-                        this.userLng = position.coords.longitude;
-                        this.map.setView([this.userLat, this.userLng], 16);
-
-                        // Dibujar círculo
-                        this.actualizarCirculo();
-
-                        // Marcar ubicación del usuario
-                        L.marker([this.userLat, this.userLng], { title: "Tu ubicación" }).addTo(this.map);
-                        this.mostrarMarcadores(); // Recargar marcadores en base a la ubicación
-                    },
-                    () => {
-                        console.warn("Usando ubicación por defecto (Refinería Bio Bio)");
-
-                        // Dibujar círculo con ubicación por defecto
-                        this.actualizarCirculo();
-                        this.mostrarMarcadores();
-                    }
-                );
-            } else {
-                console.warn("Geolocalización no soportada");
-
-                // Dibujar círculo con ubicación por defecto
+            if (!navigator.geolocation) {
+                console.warn("Geolocalización no soportada por el navegador.");
                 this.actualizarCirculo();
                 this.mostrarMarcadores();
+                return;
             }
+
+            const opciones = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+
+            navigator.geolocation.watchPosition(
+                (position) => {
+                    this.userLat = position.coords.latitude;
+                    this.userLng = position.coords.longitude;
+
+                    console.log(`Ubicación detectada: ${this.userLat}, ${this.userLng}`);
+
+                    this.map.setView([this.userLat, this.userLng], 16);
+                    this.actualizarCirculo();
+
+                    // Marcar ubicación del usuario (un solo marcador que se actualiza)
+                    if (!this.userMarker) {
+                        this.userMarker = L.marker([this.userLat, this.userLng], { title: "Tu ubicación" })
+                            .addTo(this.map);
+                    } else {
+                        this.userMarker.setLatLng([this.userLat, this.userLng]);
+                    }
+
+                    this.mostrarMarcadores();
+                },
+                (error) => {
+                    console.error("Error obteniendo ubicación:", error.message);
+
+                    // Usar ubicación por defecto si falla
+                    this.userLat = -36.779;
+                    this.userLng = -73.123;
+
+                    console.warn("Usando ubicación por defecto (Refinería Bio Bio)");
+                    this.map.setView([this.userLat, this.userLng], 16);
+                    this.actualizarCirculo();
+                    this.mostrarMarcadores();
+                },
+                opciones
+            );
         },
+
 
 
 
