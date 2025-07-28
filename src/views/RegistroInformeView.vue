@@ -50,7 +50,7 @@
           </button>
           <button
             @click="confirmarRegistro"
-            class="bg-green-600 text-white px-6 py-3 bottom-12 rounded hover:bg-green-700 transition"
+            class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition"
           >
             Confirmar
           </button>

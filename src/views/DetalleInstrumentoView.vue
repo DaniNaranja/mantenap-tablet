@@ -90,6 +90,9 @@ import dayjs from "dayjs";
 import "dayjs/locale/es";
 dayjs.locale("es");
 
+import socket from "../socket";
+
+
 export default {
     name: "DetalleInstrumentoTablet",
     data() {
@@ -117,6 +120,20 @@ export default {
     mounted() {
         this.cargarInstrumento();
         this.cargarInformes();
+
+        socket.on("informe_creado", (nuevoInforme) => {
+            console.log("Informe creado recibido:", nuevoInforme);
+            this.cargarInformes();
+        });
+
+        socket.on("informe_eliminado", (informeEliminado) => {
+            this.cargarInformes();
+        })
+
+    },
+     beforeUnmount() {
+        socket.off("informe_creado");
+        socket.off("informe_eliminado");
     },
     methods: {
 
@@ -188,5 +205,7 @@ export default {
   background: #aaa;
   border-radius: 4px;
 }
+
+
 </style>
 

@@ -103,7 +103,7 @@
 
     <div class="mt-2">
           <button
-            class="w-full bg-green-600 text-white mb-20 text-3xl font-semibold py-6 rounded-lg shadow-lg hover:bg-green-700"
+            class="w-full bg-green-600 text-white mb-24 text-3xl font-semibold py-6 rounded-lg shadow-lg hover:bg-green-700"
             @click="emitir">
             Registrar
           </button>

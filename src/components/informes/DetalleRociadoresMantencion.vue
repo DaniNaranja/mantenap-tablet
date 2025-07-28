@@ -37,7 +37,7 @@
               </td>
             </tr>
             <tr v-for="campo in grupo.campos.filter(c => c.nombre !== 'nro_equipo')" :key="campo.nombre">
-              <td class="border px-2 py-1">{{ campo.etiqueta }}</td>
+              <td class="border px-2 pt-1 pb-1.5">{{ campo.etiqueta }}</td>
               <td v-for="(equipo, i) in equipos" :key="i" class="border px-2 py-1 text-center">
                 {{ renderizarValor(equipo[campo.nombre]) }}
               </td>

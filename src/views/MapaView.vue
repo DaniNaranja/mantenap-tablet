@@ -1,5 +1,5 @@
 <template>
-<div class="fixed top-20 left-0 w-screen h-[calc(100vh-5rem)]">        <!-- Barra de búsqueda y botón volver -->
+    <div class="fixed top-20 left-0 w-screen h-[calc(100vh-5rem)]"> <!-- Barra de búsqueda y botón volver -->
         <div class="absolute top-4 left-4 right-4 z-20 flex justify-between items-start gap-3">
             <!-- Botón cerrar -->
             <button @click="volverHome"
@@ -63,6 +63,7 @@ import hydrantIcon from '../assets/hydrant.png';
 import sprinklerIcon from '../assets/sprinkler.png';
 
 import { toRaw } from 'vue'
+import socket from "../socket";
 
 
 export default {
@@ -110,6 +111,18 @@ export default {
     async mounted() {
         this.inicializarMapa();
         await this.cargarInstrumentos();
+
+        socket.on("instrumento_creado", (nuevoInstrumento) => {
+            console.log("Instrumento creado recibido:", nuevoInstrumento);
+            this.cargarInstrumentos();
+        });
+
+        socket.on("instrumento_eliminado", (instrumentoEliminado) => {
+            this.cargarInstrumentos();
+    })
+    },
+    beforeUnmount() {
+        socket.off("instrumento_creado");
     },
     methods: {
         actualizarCirculo() {
