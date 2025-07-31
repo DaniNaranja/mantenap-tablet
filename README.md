@@ -1,5 +1,41 @@
-# Vue 3 + Vite
+# Mantenap Tablet (Electron)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Aplicación de escritorio para tabletas con Windows y en Android en navegador, creada con Electron y Vue 3. Permite registrar y visualizar instrumentos de emergencia e informes directamente desde el dispositivo.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Funcionalidades
+
+- Visualización de instrumentos geolocalizados en un mapa
+- Registro de informes de inspección, mantención y prueba
+- Visualización de detalles e imágenes
+- Exportación de informes en PDF
+- Actualización automática con WebSocket
+- Adaptada para pantallas táctiles
+
+## Instalación
+
+1. Clona el repositorio:
+   git clone https://github.com/DaniNaranja/mantenap-tablet.git
+   cd mantenap-tablet
+   
+
+2. Instala las dependencias:
+   npm install
+   
+
+3. Compila la app:
+   npm run build (Windows)
+
+   npx vite --host (Android + Navegador)
+   
+
+4. Ejecuta la app con Electron:
+   npx electron 
+
+5. Para empaquetar:
+   npm run electron:build
+  
+
+## Observaciones
+
+- La aplicación requiere conexión a la red local donde se encuentra alojada la API (`http://192.168.42.1:3003`).
+- La obtención de ubicación mediante GPS depende del soporte de Windows y los permisos del sistema. En Windows presenta algunos problemas, pero obtiene la ubicación en Android.
